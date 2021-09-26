@@ -1,4 +1,5 @@
 import { PostService } from './db.sqlqueries.js';
+import { SubscriptionController } from "./sub.controller.js";
 
 export const PostController = {
 
@@ -35,7 +36,11 @@ export const PostController = {
                 res.status(500).send({
                     message: err.message || "Some error occurred while creating the post.",
                 });
-            else res.json(result);
+            else return res.json(result);
+        })
+        .then( data => {
+            SubscriptionController.sendNotification();
+            return data;
         });
     },
 

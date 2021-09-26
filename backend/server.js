@@ -1,6 +1,7 @@
 import express from 'express';
 import { PostController } from './posts.controller.js';
 import cors from 'cors';
+import { SubscriptionController } from "./sub.controller.js";
 
 const app = express();
 const PORT = 3000;
@@ -27,6 +28,7 @@ app.get("/posts", PostController.readAll); // R (all)
 app.get("/posts/:postId", PostController.readOne); // R (one)
 app.put("/posts/:postId", PostController.update); // U
 app.delete("/posts/:postId", PostController.delete); // D
+app.post("/subscription", SubscriptionController.subscribe);
 
 /* 
 Das bedeutet, wir importieren express (Zeile 1), erzeugen uns davon eine 
